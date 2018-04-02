@@ -26,7 +26,7 @@ trait Canvas {
     * Should only be set before drawing takes place, and before calling
     * setOrigin as calls to setOrigin will often use the current size to
     * calculate offsets in the implementation specific coordinate system.
-    * 
+    *
     * The Canvas may ignore this if it is not capable of changing its size. */
   def setSize(width: Int, height: Int): Unit
 
@@ -82,13 +82,14 @@ trait Canvas {
                   centerX, centerY + radius)
     endPath()
   }
-  def rectangle(left: Double, top: Double, width: Double, height: Double): Unit = {
+
+  def rectangle(centerX: Double, centerY: Double, width: Double, height: Double): Unit = {
     beginPath()
-    moveTo(left        , top)
-    lineTo(left + width, top)
-    lineTo(left + width, top - height)
-    lineTo(left        , top - height)
-    lineTo(left        , top)
+    moveTo(centerX - width/2, centerY + height/2)
+    lineTo(centerX + width/2, centerY + height/2)
+    lineTo(centerX + width/2, centerY - height/2)
+    lineTo(centerX - width/2, centerY - height/2)
+    lineTo(centerX - width/2, centerY + height/2)
     endPath()
   }
 }
